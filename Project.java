@@ -16,7 +16,16 @@ public class Project
     public Project()
     {
         // initialise instance variables
-        x = 0;
+        int grid[][] = new int [25][25]; // creating grid using 2d array
+        for (int x=0;x<25;x++){
+            for(int y=0;y<25;y++){
+                //grid[x][y] =y+1;
+                System.out.print(grid[x][y]+" ");
+            }
+            System.out.print("\n");
+        }
+        
+        
     }
 
     /**
