@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=CSCproject2022
+comment0.text=\r\n\ @author\ Aiden\ Locke\r\n\ version\ 1\ \r\n\ start\ date\ (11/05/2022)\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\r\n\ A\ little\ driver\ in\ case\ you\ want\ a\ stand-alone\ application.\r\n
+numComments=2
