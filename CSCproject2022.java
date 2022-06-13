@@ -6,7 +6,9 @@ import java.awt.Point;
 import javax.swing.SwingUtilities;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+// the imports below are for the mouse listener(until next comment)
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 /**
  * @author Aiden Locke
  * version 1 
@@ -27,7 +29,8 @@ public class CSCproject2022 extends JPanel  {
         int x2=400; // distance from left side bottom of line
         int y2=400; // distance from top of canvas bottom of line
 
-        for(int x=0; x<400; x=x+20){ // loop for making horizantal lines
+        for(int x=0; x<400; x=x+20){
+            // loop for making horizantal lines
             g.setColor(Color.BLACK); // setting color of line
             g.drawLine(x,y1,x,y2); // drawing line
         }
@@ -36,6 +39,7 @@ public class CSCproject2022 extends JPanel  {
             g.setColor(Color.BLACK); 
             g.drawLine(x1,y,x2,y);
         }
+
     }
 
     /**
@@ -50,7 +54,46 @@ public class CSCproject2022 extends JPanel  {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().add(panel, BorderLayout.CENTER);
                 frame.setVisible(true);
+                frame.getContentPane().addMouseListener(new MouseListener(){
+                        // these are the different steps in clicking the mouse 
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            int i=0;
+                            int gridPos[][][]= new int[20][20][3];
 
+                            for (int x=0; x<20; x++){
+                                for (int y=0; y<20; y++){
+                                    if (e.getX()<gridPos[x][y][0] && e.getY()<gridPos[x][y][1]){
+                                        gridPos[x][y][2]=i;
+                                        i=i+1;
+                                        gridPos[x][y][0]= (x*20)+20;
+                                        gridPos[x][y][1]= (y*20)+20;
+                                    }
+                                }
+                            }
+                            System.out.println(e.getPoint());
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e){
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e){
+
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent e){
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent e){
+                            
+                        }
+                    });
             });
 
     }
