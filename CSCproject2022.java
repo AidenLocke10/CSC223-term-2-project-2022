@@ -15,7 +15,7 @@ import java.awt.event.MouseListener;
  * start date (11/05/2022)
  */
 public class CSCproject2022 extends JPanel  {
-
+    private static int gridPos[][][]= new int[20][20][4];
     /**
      * constructor for objects of class CSCproject2022
      */
@@ -29,6 +29,19 @@ public class CSCproject2022 extends JPanel  {
         int x2=400; // distance from left side bottom of line
         int y2=400; // distance from top of canvas bottom of line
 
+        int i=1;
+        for (int x =0; x<20; x++){
+            for (int y =0; y<20; y++){
+
+                if (gridPos[x][y][3]==1){
+                    g.setColor(Color.BLUE);
+                    g.fillRect(gridPos[x][y][0]-20,gridPos[x][y][1]-20,20,20);
+
+                }
+
+            }
+        }
+
         for(int x=0; x<400; x=x+20){
             // loop for making horizantal lines
             g.setColor(Color.BLACK); // setting color of line
@@ -40,12 +53,25 @@ public class CSCproject2022 extends JPanel  {
             g.drawLine(x1,y,x2,y);
         }
 
+
     }
 
     /**
      * 
      */
     public static void main(String[] args) {
+
+        int i =1;
+        for (int x =0; x<20; x++){
+            for (int y =0; y<20; y++){
+                gridPos[x][y][2]= i;
+                i=i+1;
+                gridPos[x][y][0]= (x*20)+20;
+                gridPos[x][y][1]= (y*20)+20;
+                int clicked = 0;
+                gridPos[x][y][3]=clicked;
+            }
+        }
         SwingUtilities.invokeLater(() -> {
                 var panel = new CSCproject2022();
                 panel.setBackground(Color.WHITE); //setting the cavas color
@@ -58,16 +84,17 @@ public class CSCproject2022 extends JPanel  {
                         // these are the different steps in clicking the mouse 
                         @Override
                         public void mouseClicked(MouseEvent e){
-                            int i=0;
-                            int gridPos[][][]= new int[20][20][3];
+                            int i =0;
 
-                            for (int x=0; x<20; x++){
-                                for (int y=0; y<20; y++){
+                            for (int x =0; x<20; x++){
+                                for (int y =0; y<20; y++){
+
                                     if (e.getX()<gridPos[x][y][0] && e.getY()<gridPos[x][y][1]){
-                                        gridPos[x][y][2]=i;
-                                        i=i+1;
-                                        gridPos[x][y][0]= (x*20)+20;
-                                        gridPos[x][y][1]= (y*20)+20;
+                                        int id = gridPos[x][y][2];
+                                        System.out.println(id);
+                                        gridPos[x][y][3]=1;
+                                        frame.repaint();
+                                        return;
                                     }
                                 }
                             }
@@ -91,7 +118,7 @@ public class CSCproject2022 extends JPanel  {
 
                         @Override
                         public void mouseReleased(MouseEvent e){
-                            
+
                         }
                     });
             });
